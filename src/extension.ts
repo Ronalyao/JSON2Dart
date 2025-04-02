@@ -68,13 +68,13 @@ function generateDartModel(className: string, json: any, classes: Set<string> = 
     // 生成属性
     for (const [key, value] of Object.entries(json)) {
         const type = getPropertyType(key, value, classes, subClasses);
-        code += `  ${type} ${key};\n`;
+        code += `  ${type}? ${key};\n`;  // 添加 ? 使属性可空
     }
 
     // 生成构造函数
     code += `\n  ${className}({\n`;
     for (const [key] of Object.entries(json)) {
-        code += `    required this.${key},\n`;
+        code += `    this.${key},\n`;  // 移除 required
     }
     code += `  });\n\n`;
 
@@ -137,10 +137,10 @@ function generateFromJsonValue(key: string, value: any): string {
 function generateToJsonValue(key: string, value: any): string {
     if (value === null) return key;
     if (typeof value === 'object' && !Array.isArray(value)) {
-        return `${key}.toJson()`;
+        return `${key}?.toJson()`;  // 添加 ? 操作符进行空值检查
     }
     if (Array.isArray(value) && value.length > 0 && typeof value[0] === 'object') {
-        return `${key}.map((e) => e.toJson()).toList()`;
+        return `${key}?.map((e) => e.toJson()).toList()`;  // 添加 ? 操作符进行空值检查
     }
     return key;
 }

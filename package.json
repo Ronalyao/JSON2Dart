@@ -2,7 +2,7 @@
   "name": "json2dart",
   "displayName": "JSON2Dart",
   "description": "Convert JSON to Dart model class",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "engines": {
     "vscode": "^1.50.0"
   },
