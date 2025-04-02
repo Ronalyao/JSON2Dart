@@ -9,9 +9,9 @@ export function activate(context: vscode.ExtensionContext) {
     let disposable = vscode.commands.registerCommand('json2dartcode.convert', async (uri: vscode.Uri) => {
         // 获取文件名（不带扩展名）并首字母大写
         const fileName = path.parse(uri.fsPath).name;
-        const className = fileName.charAt(0).toUpperCase() + fileName.slice(1);
+        const defaultClassName = fileName.charAt(0).toUpperCase() + fileName.slice(1);
 
-        // 创建输入框
+        // 首先创建 JSON 输入框
         const jsonInput = await vscode.window.showInputBox({
             prompt: '请输入JSON数据',
             placeHolder: '{"key": "value"}'
@@ -20,10 +20,19 @@ export function activate(context: vscode.ExtensionContext) {
         if (!jsonInput) return;
 
         try {
-            // 解析JSON
+            // 解析 JSON
             const jsonData = typeof jsonInput === 'string' ? JSON.parse(jsonInput) : jsonInput;
-            
-            // 生成Dart代码
+
+            // 创建类名输入框
+            const className = await vscode.window.showInputBox({
+                prompt: '请输入类名',
+                value: defaultClassName,
+                placeHolder: '请输入类名（首字母大写）'
+            });
+
+            if (!className) return;
+
+            // 生成 Dart 代码
             const generatedCode = generateDartModel(className, jsonData);
 
             // 获取活动编辑器
