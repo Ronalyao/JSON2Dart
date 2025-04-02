@@ -1,8 +1,8 @@
 {
-  "name": "json2dart",
-  "displayName": "JSON2Dart",
+  "name": "json2dartcode",
+  "displayName": "JSON2DartCode",
   "description": "Convert JSON to Dart model class",
-  "version": "0.0.3",
+  "version": "0.0.5",
   "engines": {
     "vscode": "^1.50.0"
   },
@@ -13,14 +13,14 @@
   "main": "./dist/extension.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Ronalyao/JSON2Dart.git"
+    "url": "https://github.com/Ronalyao/JSON2DartCode.git"
   },
   "license": "MIT",
   "publisher": "Ronalyao",
   "contributes": {
     "commands": [
       {
-        "command": "json2dart.convert",
+        "command": "json2dartCode.convert",
         "title": "JSON to dart model"
       }
     ],
@@ -28,7 +28,7 @@
       "explorer/context": [
         {
           "when": "resourceExtname == .dart",
-          "command": "json2dart.convert",
+          "command": "json2dartCode.convert",
           "group": "navigation"
         }
       ]

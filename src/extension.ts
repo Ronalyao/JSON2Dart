@@ -6,7 +6,7 @@ import * as path from 'path';
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
-    let disposable = vscode.commands.registerCommand('json2dart.convert', async (uri: vscode.Uri) => {
+    let disposable = vscode.commands.registerCommand('json2dartcode.convert', async (uri: vscode.Uri) => {
         // 获取文件名（不带扩展名）并首字母大写
         const fileName = path.parse(uri.fsPath).name;
         const className = fileName.charAt(0).toUpperCase() + fileName.slice(1);

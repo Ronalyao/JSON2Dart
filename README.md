@@ -1,6 +1,6 @@
-# JSON2Dart README
+# JSON2DartCode README
 
-This is the README for extension "json2dart". 
+This is the README for extension "JSON2DartCode". 
 
 ## Features
 
